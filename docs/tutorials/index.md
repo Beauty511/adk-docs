@@ -1,4 +1,4 @@
-# Build your agent with ADK
+https://adk.dev/live/get-started/index.md# Build your agent with ADK
 
 Get started with the Agent Development Kit (ADK) through our collection of
 practical guides. These tutorials are designed in a simple, progressive,
