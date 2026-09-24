@@ -1,4 +1,47 @@
-# Kotlin Quickstart for ADK
+my_agent/
+    src/main/kotlin/com/example/agent/
+                        HelloTimeAgent.kt   # agent definition + tool
+                        Main.kt             # entry point
+    build.gradle.kts                        # project configuration
+    .env                                    # API keys or project IDsmkdir -p my_agent/src/main/kotlin/com/example/agent && \
+    touch my_agent/src/main/kotlin/com/example/agent/HelloTimeAgent.kt && \
+    touch my_agent/src/main/kotlin/com/example/agent/Main.kt && \
+    touch my_agent/build.gradle.kts my_agent/.envdependencies {
+    implementation("com.google.adk:google-adk-kotlin-core:1.0.0")
+    ksp("com.google.adk:google-adk-kotlin-processor:1.0.0")
+}plugins {
+    kotlin("jvm") version "2.1.20"
+    id("com.google.devtools.ksp") version "2.1.20-2.0.1"
+    application
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.google.adk:google-adk-kotlin-core:1.0.0")
+    implementation("com.google.adk:google-adk-kotlin-webserver:1.0.0")
+    ksp("com.google.adk:google-adk-kotlin-processor:1.0.0")
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+application {
+    mainClass.set(
+        project.findProperty("mainClass") as? String
+            ?: "com.example.agent.MainKt"
+    )
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}2025/01/01 00:00:00 Starting the web server: &{port:8080 ...}
+2025/01/01 00:00:00 Web servers starts on http://localhost:8080
+2025/01/01 00:00:00        webui:  you can access API using http://localhost:8080/ui/
+2025/01/01 00:00:00        api:  you can access API using http://localhost:8080/api# Kotlin Quickstart for ADK
 
 This guide shows you how to get up and running with Agent Development Kit
 for Kotlin. Before you start, make sure you have the following installed:
